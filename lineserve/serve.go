@@ -13,8 +13,10 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/cention-sany/line"
+	"golang.org/x/oauth2"
+
 	"github.com/kataras/iris"
+	"github.com/sanylcs/line"
 )
 
 const usoftIP = "https://127.0.0.1:444"
@@ -49,7 +51,7 @@ func main() {
 		c.HTML("<b>pong pong</b>")
 	})
 	iris.Get("/line", func(c *iris.Context) {
-		auth = line.GetAuth(callback, "random123")
+		auth = line.GetAuth(callback, "random123", nil)
 		// Redirect user to consent page to ask for permission
 		// for the scopes specified above.
 		url := auth.GetURL()
